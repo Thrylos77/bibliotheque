@@ -1,0 +1,277 @@
+/* ============================================================================
+  Bibliothèque Universitaire - identité visuelle
+  Palette : encre nuit / parchemin / laiton / bordeaux / sauge
+  Police d'affichage : Playfair Display - police de texte : Work Sans
+ ========================================================================== */
+
+:root {
+  --ink:        #1B2A4A;   /* bleu nuit - navbar, titres */
+  --ink-deep:   #121D33;
+  --parchment:  #F6EFE0;   /* fond chaud, cartes */
+  --parchment-2:#EFE4CC;
+  --brass:      #C9A227;   /* laiton - accent principal, focus, liens */
+  --brass-dark: #9C7C1D;
+  --burgundy:   #7A2E2E;   /* rouge bordeaux - alertes, retard */
+  --burgundy-2: #5C2222;
+  --sage:       #5B7B6B;   /* vert sauge - succès, disponible */
+  --charcoal:   #2A2620;   /* texte principal */
+  --paper:      #FBF8F1;   /* fond général de page */
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Work Sans', 'Segoe UI', sans-serif;
+
+  --radius: 10px;
+  --shadow-soft: 0 10px 30px rgba(27, 42, 74, 0.12);
+}
+
+body {
+  background-color: var(--paper);
+  font-family: var(--font-body);
+  color: var(--charcoal);
+}
+
+h1, h2, h3, h4, .brand, .stat-number {
+  font-family: var(--font-display);
+}
+
+
+/* ---------- Barre de navigation ---------- */
+.navbar-bibliotheque {
+  background: linear-gradient(180deg, var(--ink) 0%, var(--ink-deep) 100%);
+  border-bottom: 3px solid var(--brass);
+}
+
+.navbar-bibliotheque .navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+  color: var(--parchment) !important;
+}
+
+.navbar-bibliotheque .nav-link {
+  color: rgba(246, 239, 224, 0.85) !important;
+  font-weight: 500;
+  position: relative;
+}
+
+.navbar-bibliotheque .nav-link:hover {
+  color: var(--brass) !important;
+}
+
+.navbar-bibliotheque .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0.5rem; right: 0.5rem; bottom: -2px;
+  height: 2px;
+  background: var(--brass);
+}
+
+
+
+/* ---------- Cartes & conteneurs ---------- */
+.card {
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.card-accent {
+  border-left: 5px solid var(--brass);
+}
+.card-accent.accent-burgundy { border-left-color: var(--burgundy); }
+.card-accent.accent-sage     { border-left-color: var(--sage); }
+.card-accent.accent-ink      { border-left-color: var(--ink); }
+
+.stat-number {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+
+/* ---------- Boutons ---------- */
+.btn-primary {
+  background-color: var(--ink);
+  border-color: var(--ink);
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--ink-deep);
+  border-color: var(--ink-deep);
+}
+
+.btn-brass {
+  background-color: var(--brass);
+  border-color: var(--brass);
+  color: var(--ink-deep);
+  font-weight: 600;
+}
+.btn-brass:hover {
+  background-color: var(--brass-dark);
+  border-color: var(--brass-dark);
+  color: #fff;
+}
+
+.btn-outline-primary {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn-outline-primary:hover {
+  background-color: var(--ink);
+  border-color: var(--ink);
+}
+
+
+
+/* ---------- Tableaux ---------- */
+.table thead {
+  background-color: var(--ink);
+  color: var(--parchment);
+}
+.table thead th {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-bottom: none;
+}
+.table-hover tbody tr:hover {
+  background-color: var(--parchment);
+}
+
+
+
+/* ---------- Badges de statut (emprunts) ---------- */
+.badge-retard   { background-color: var(--burgundy); }
+.badge-encours  { background-color: var(--brass); color: var(--ink-deep); }
+.badge-retourne { background-color: var(--sage); }
+
+
+
+/* ---------- Messages flash ---------- */
+.alert-flash {
+  border: none;
+  border-left: 4px solid currentColor;
+  border-radius: 6px;
+}
+
+
+/* ---------- Pied de page ---------- */
+footer {
+  padding: 1.5rem 0;
+  text-align: center;
+  color: #8a8477;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+}
+
+
+/* ==========================================================================
+  Page de connexion - écran signature
+  ========================================================================== */
+
+  
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+
+  /* Superposition dégradée (lisibilité) + illustration originale en fond */
+  background-image:
+    linear-gradient(175deg, rgba(18, 29, 51, 0.55) 0%, rgba(36, 21, 34, 0.72) 100%),
+    url('../img/bibliotheque-bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(246, 239, 224, 0.94);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  border-top: 4px solid var(--brass);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  padding: 2.5rem 2.25rem;
+}
+
+.auth-brand {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.auth-brand .auth-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.9rem;
+  box-shadow: 0 6px 16px rgba(27, 42, 74, 0.35);
+}
+
+.auth-brand .auth-icon i {
+  color: var(--brass);
+  font-size: 1.6rem;
+}
+
+.auth-brand h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
+}
+
+.auth-brand p {
+  color: #6b6455;
+  font-size: 0.92rem;
+  margin-bottom: 0;
+}
+
+.auth-card .form-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.auth-card .form-control {
+  border: 1px solid #d8cdb0;
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  background-color: #fffdf8;
+}
+
+.auth-card .form-control:focus {
+  border-color: var(--brass);
+  box-shadow: 0 0 0 0.2rem rgba(201, 162, 39, 0.25);
+}
+
+.auth-card .btn-login {
+  background-color: var(--ink);
+  border-color: var(--ink);
+  color: var(--parchment);
+  font-weight: 600;
+  padding: 0.65rem;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s ease;
+}
+
+.auth-card .btn-login:hover {
+  background-color: var(--brass-dark);
+  border-color: var(--brass-dark);
+  color: #fff;
+}
+
+.auth-footnote {
+  text-align: center;
+  margin-top: 1.25rem;
+  font-size: 0.8rem;
+  color: rgba(246, 239, 224, 0.75);
+}
