@@ -27,7 +27,7 @@ function statistiques_obtenir_dashboard(): array
 function statistiques_livres_recommandes(int $limite = 5): array
 {
     $pdo = get_pdo();
-    $sql = 'SELECT livres.titre, livres.auteur, categories.nom AS categorie
+    $sql = 'SELECT livres.id, livres.titre, livres.auteur, livres.couverture, categories.nom AS categorie
             FROM livres
             LEFT JOIN categories ON livres.id_categorie = categories.id
             WHERE livres.quantite > 0
@@ -43,10 +43,10 @@ function statistiques_livres_recommandes(int $limite = 5): array
 function statistiques_top_livres(int $limite = 5): array
 {
     $pdo = get_pdo();
-    $sql = 'SELECT livres.titre, livres.auteur, COUNT(emprunts.id) AS nb_emprunts
+    $sql = 'SELECT livres.id, livres.titre, livres.auteur, livres.couverture, COUNT(emprunts.id) AS nb_emprunts
             FROM emprunts
             INNER JOIN livres ON emprunts.id_livre = livres.id
-            GROUP BY livres.id, livres.titre, livres.auteur
+            GROUP BY livres.id, livres.titre, livres.auteur, livres.couverture
             ORDER BY nb_emprunts DESC, livres.titre ASC
             LIMIT :limite';
     $stmt = $pdo->prepare($sql);

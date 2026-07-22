@@ -78,8 +78,17 @@ require __DIR__ . '/views/_header.php';
             <div class="card-body">
                 <div class="list-group list-group-flush">
                     <?php foreach ($stats['livres_recommandes'] as $livre): ?>
-                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
+                        <div class="list-group-item d-flex align-items-center gap-3">
+                            <?php if (!empty($livre['couverture']) && file_exists(__DIR__ . '/' . $livre['couverture'])): ?>
+                                <img src="<?php echo BASE_URL . $livre['couverture']; ?>"
+                                     alt="Couverture"
+                                     style="width: 40px; height: 56px; object-fit: cover; border-radius: 4px; flex-shrink: 0;">
+                            <?php else: ?>
+                                <div style="width: 40px; height: 56px; background: #e9ecef; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <i class="bi bi-book" style="color: #adb5bd; font-size: 1rem;"></i>
+                                </div>
+                            <?php endif; ?>
+                            <div class="flex-grow-1">
                                 <strong><?php echo e($livre['titre']); ?></strong>
                                 <small class="text-muted d-block"><?php echo e($livre['auteur']); ?></small>
                             </div>
@@ -98,8 +107,17 @@ require __DIR__ . '/views/_header.php';
             <div class="card-body">
                 <div class="list-group list-group-flush">
                     <?php foreach ($stats['top_livres'] as $index => $livre): ?>
-                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
+                        <div class="list-group-item d-flex align-items-center gap-3">
+                            <?php if (!empty($livre['couverture']) && file_exists(__DIR__ . '/' . $livre['couverture'])): ?>
+                                <img src="<?php echo BASE_URL . $livre['couverture']; ?>"
+                                     alt="Couverture"
+                                     style="width: 40px; height: 56px; object-fit: cover; border-radius: 4px; flex-shrink: 0;">
+                            <?php else: ?>
+                                <div style="width: 40px; height: 56px; background: #e9ecef; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <i class="bi bi-book" style="color: #adb5bd; font-size: 1rem;"></i>
+                                </div>
+                            <?php endif; ?>
+                            <div class="flex-grow-1">
                                 <strong>#<?php echo $index + 1; ?> <?php echo e($livre['titre']); ?></strong>
                                 <small class="text-muted d-block"><?php echo e($livre['auteur']); ?></small>
                             </div>
