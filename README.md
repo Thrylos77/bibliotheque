@@ -27,9 +27,9 @@ Interface Bootstrap 5.
 
 ## Comptes utilisateurs
 
-| Rôle          | Email                          | Mot de passe         |
-|---------------|--------------------------------|----------------------|
-| Administrateur | `admin@bibliotheque.local`     | `admin123`           |
+| Rôle          | Email                               | Mot de passe        |
+| -------------- | ----------------------------------- | ------------------- |
+| Administrateur | `admin@bibliotheque.local`        | `admin123`        |
 | Gestionnaire   | `gestionnaire@bibliotheque.local` | `gestionnaire123` |
 
 ---
@@ -72,7 +72,7 @@ bibliotheque/
 │   ├── img/bibliotheque-bg.svg
 │   ├── js/script.js
 │   ├── js/htmx.min.js
-│   └── uploads/         (couvertures de livres)
+├── uploads/         (couvertures de livres)
 ├── sql/database.sql
 ├── index.php            (tableau de bord — page d'accueil protégée)
 ├── login.php
@@ -84,6 +84,7 @@ bibliotheque/
 ## Fonctionnalités
 
 ### Authentification & sécurité
+
 - Authentification par session avec `password_hash()` / `password_verify()`.
 - Gestion des rôles : **admin** et **gestionnaire** (contrôle d'accès sur les actions sensibles).
 - Protection **CSRF** sur tous les formulaires (token généré, vérifié et régénéré).
@@ -94,6 +95,7 @@ bibliotheque/
   est enregistrée avec l'IP et l'utilisateur.
 
 ### Gestion des livres
+
 - CRUD complet (créer, lire, modifier, supprimer).
 - Catégorisation des livres (relation `livres.id_categorie` → `categories.id`).
 - Upload de couverture de livre (stocké dans `uploads/couvertures/`).
@@ -102,12 +104,14 @@ bibliotheque/
 - Pagination (10 résultats par page).
 
 ### Gestion des étudiants
+
 - CRUD complet (nom, prénom, email, téléphone, filière).
 - Recherche multicritère (nom, prénom, email, filière).
 - Filtres : tous / par filière.
 - Pagination.
 
 ### Gestion des emprunts
+
 - Emprunt avec **transaction PDO** : décrémente le stock du livre, empêche les quantités
   négatives, réincrémente le stock au moment du retour.
 - Retour de livre (marquage `Retourne` + remise à jour du stock).
@@ -117,20 +121,24 @@ bibliotheque/
 - Pagination.
 
 ### Catégories
+
 - CRUD complet des catégories de livres.
 - Utilisé dans la gestion des livres (sélection dans un `<select>`).
 
 ### Tableau de bord (index.php)
+
 - Statistiques globales : nombre de livres, d'étudiants, d'emprunts en cours, d'emprunts en retard.
 - Top 5 des livres les plus empruntés.
 - Livres recommandés (derniers ajouts disponibles).
 - Total des emprunts depuis la création.
 
 ### Export CSV
+
 - Export des **livres**, **étudiants**, **emprunts** et **emprunts en retard** en CSV
   (compatible Excel — BOM UTF-8, séparateur `;`).
 
 ### Journal d'audit (logs)
+
 - Liste paginée de toutes les actions effectuées dans l'application.
 - Filtrable par type d'action et par table cible.
 
@@ -140,16 +148,17 @@ bibliotheque/
 
 Le script `sql/database.sql` crée 6 tables :
 
-| Table          | Description                                      |
-|----------------|--------------------------------------------------|
-| `utilisateurs` | Comptes admin/gestionnaire (email, rôle, hash MDP) |
-| `categories`   | Catégories de livres (nom unique)                |
+| Table            | Description                                                             |
+| ---------------- | ----------------------------------------------------------------------- |
+| `utilisateurs` | Comptes admin/gestionnaire (email, rôle, hash MDP)                     |
+| `categories`   | Catégories de livres (nom unique)                                      |
 | `livres`       | Livres (titre, auteur, ISBN, année, quantité, catégorie, couverture) |
-| `etudiants`    | Étudiants (nom, prénom, email, téléphone, filière) |
-| `emprunts`     | Emprunts (livre, étudiant, dates, statut)        |
-| `logs`         | Journal d'audit (action, table, élément, IP, utilisateur, date) |
+| `etudiants`    | Étudiants (nom, prénom, email, téléphone, filière)                 |
+| `emprunts`     | Emprunts (livre, étudiant, dates, statut)                              |
+| `logs`         | Journal d'audit (action, table, élément, IP, utilisateur, date)       |
 
 Le script inclut également :
+
 - 2 comptes utilisateurs (admin + gestionnaire).
 - 10 catégories de démonstration.
 - 30 livres de démonstration.
@@ -160,11 +169,11 @@ Le script inclut également :
 
 ## Technologies
 
-| Couche         | Technologie                          |
-|----------------|--------------------------------------|
-| Backend        | PHP 8+ / PDO (procédural)            |
-| Base de données| MySQL / MariaDB                      |
-| Frontend       | Bootstrap 5, Bootstrap Icons         |
-| JavaScript     | Vanilla JS + HTMX                    |
+| Couche           | Technologie                                                  |
+| ---------------- | ------------------------------------------------------------ |
+| Backend          | PHP 8+ / PDO (procédural)                                   |
+| Base de données | MySQL / MariaDB                                              |
+| Frontend         | Bootstrap 5, Bootstrap Icons                                 |
+| JavaScript       | Vanilla JS + HTMX                                            |
 | Sécurité       | password_hash, CSRF, htmlspecialchars, requêtes préparées |
-| Police         | Playfair Display, Work Sans (Google Fonts) |
+| Police           | Playfair Display, Work Sans (Google Fonts)                   |
